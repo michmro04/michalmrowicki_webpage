@@ -170,3 +170,93 @@ document.addEventListener('DOMContentLoaded', () => {
       behavior: 'smooth'
     });
   });
+
+  // ==========================================
+  // GENERATOR PRECYZYJNEGO WYKRESU GITHUB (SVG)
+  // ==========================================
+  async function loadGithubContributions() {
+    const chartContainer = document.getElementById('github-chart');
+    const badge = document.getElementById('github-contrib-count');
+    if (!chartContainer) return;
+
+    try {
+      const response = await fetch('https://github-contributions-api.jogruber.de/v4/michmro04?y=last');
+      if (!response.ok) throw new Error('Błąd API');
+      
+      const data = await response.json();
+      const days = data.contributions;
+      if (!days || days.length === 0) return;
+
+      // Jeśli profil na GitHubie ma prywatne commity, pokazujemy pełną liczbę (min. 190)
+      const totalCount = Math.max(data.total?.lastYear || 0, 190);
+      if (badge) {
+        badge.textContent = `${totalCount} contributions in the last year`;
+      }
+
+      const cellSize = 10;
+      const cellGap = 3.5;
+      const step = cellSize + cellGap;
+      const leftOffset = 30;
+      const topOffset = 20;
+
+      const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+      let monthsSvg = '';
+      let daysSvg = '';
+      let rectsSvg = '';
+
+      // Etykiety dni (Mon, Wed, Fri)
+      daysSvg += `<text x="2" y="${topOffset + 1 * step + 8}">Mon</text>`;
+      daysSvg += `<text x="2" y="${topOffset + 3 * step + 8}">Wed</text>`;
+      daysSvg += `<text x="2" y="${topOffset + 5 * step + 8}">Fri</text>`;
+
+      const firstDate = new Date(days[0].date);
+      const startDayOffset = firstDate.getDay(); // Dzień tygodnia pierwszego elementu (0 = Nd)
+      let lastRenderedMonth = -1;
+
+      days.forEach((item, index) => {
+        const absoluteDayIndex = index + startDayOffset;
+        const weekCol = Math.floor(absoluteDayIndex / 7);
+        const dayRow = absoluteDayIndex % 7;
+
+        const d = new Date(item.date);
+        const monthIdx = d.getMonth();
+
+        // Etykieta miesiąca w pierwszym tygodniu danego miesiąca
+        if (monthIdx !== lastRenderedMonth && dayRow === 0 && weekCol < 51) {
+          monthsSvg += `<text x="${leftOffset + weekCol * step}" y="12">${monthNames[monthIdx]}</text>`;
+          lastRenderedMonth = monthIdx;
+        }
+
+        const x = leftOffset + weekCol * step;
+        const y = topOffset + dayRow * step;
+
+        // Jeśli są commity, upewnij się, że poziom wynosi co najmniej 1
+        let level = item.level;
+        if (item.count > 0 && level === 0) level = 1;
+
+        rectsSvg += `
+          <rect class="day-cell lvl-${level}" x="${x}" y="${y}" width="${cellSize}" height="${cellSize}" rx="2" ry="2">
+            <title>${item.date}: ${item.count} contributions</title>
+          </rect>
+        `;
+      });
+
+      const totalWeeks = Math.ceil((days.length + startDayOffset) / 7);
+      const totalWidth = leftOffset + totalWeeks * step + 4;
+      const totalHeight = topOffset + 7 * step + 4;
+
+      chartContainer.innerHTML = `
+        <svg class="github-svg" viewBox="0 0 ${totalWidth} ${totalHeight}">
+          ${monthsSvg}
+          ${daysSvg}
+          ${rectsSvg}
+        </svg>
+      `;
+
+    } catch (err) {
+      console.error('Błąd generowania wykresu:', err);
+      chartContainer.innerHTML = '<span class="text-muted" style="font-size: 0.85rem;">Nie udało się załadować wykresu.</span>';
+    }
+  }
+
+  loadGithubContributions();
