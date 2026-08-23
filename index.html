@@ -1,52 +1,354 @@
 <!DOCTYPE html>
-<html lang="pl">
+<html lang="pl" data-theme="dark">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Michał Mrowicki</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Michał Mrowicki - strona wizytówkowa studenta Informatyki Politechniki Gdańskiej.">
+  <title>Michał Mrowicki | Portfolio</title>
+  
+  <!-- Fonty: Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  
+  <!-- Ikony Lucide -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <!-- Ścieżka zgodna ze strukturą: assets/styles/style.css -->
+  <link rel="stylesheet" href="assets/styles/style.css">
 </head>
 <body>
-    <nav class="navbar">
-        <ul>
-            <li><a href="#about">About</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </nav>
 
-    <section id="about">
-        <h1>About Me</h1>
-        <p>Hello! I'm Michał Mrowicki, student of last year of Computer Science (BSc) at the Technological University of Gdańsk.</p>
+  <!-- Pasek nawigacji -->
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="#hero" class="brand-logo">&lt;MM/&gt;</a>
+      
+      <nav class="nav-menu" id="nav-menu">
+        <a href="#about" class="nav-link">O mnie</a>
+        <a href="#stack" class="nav-link">Technologie</a>
+        <a href="#projects" class="nav-link">Projekty</a>
+        <a href="#contact" class="nav-link">Kontakt</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button id="theme-toggle" class="icon-btn" aria-label="Przełącz motyw">
+          <i data-lucide="sun" class="light-icon"></i>
+          <i data-lucide="moon" class="dark-icon"></i>
+        </button>
+        <button id="menu-toggle" class="icon-btn mobile-only" aria-label="Menu mobilne">
+          <i data-lucide="menu"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Sekcja 1: Hero -->
+    <section id="hero" class="hero-section">
+      <div class="container hero-content">
+        <div class="hero-badge">
+          <span class="status-indicator"></span> Student Informatyki Politechnika Gdańska (WETI)
+        </div>
+        <h1 class="hero-title">
+          Cześć, jestem <span class="text-gradient">Michał Mrowicki</span>
+        </h1>
+        <p class="hero-subtitle">
+          Studiuję informatykę, rozwijam swoje umiejętności programistyczne i realizuję pierwsze projekty. Szybko się uczę, lubię rozwiązywać logiczne problemy i łączyć wiedzę ze studiów z praktycznym kodowaniem.
+        </p>
+        
+        <div class="hero-cta">
+          <a href="#contact" class="btn btn-primary">
+            <i data-lucide="mail"></i> Skontaktuj się
+          </a>
+          <!-- Ścieżka do CV w assets/ -->
+          <a href="assets/cv_michal_mrowicki.pdf" download class="btn btn-secondary">
+            <i data-lucide="download"></i> Pobierz CV
+          </a>
+        </div>
+
+        <!-- Ikony społecznościowe SVG -->
+        <div class="hero-socials">
+          <a href="https://github.com/michmro04" target="_blank" rel="noopener noreferrer" class="social-link" title="GitHub" aria-label="GitHub">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path>
+              <path d="M9 18c-4.51 2-5-2-7-2"></path>
+            </svg>
+          </a>
+
+          <a href="https://linkedin.com/in/" target="_blank" rel="noopener noreferrer" class="social-link" title="LinkedIn" aria-label="LinkedIn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+              <rect width="4" height="12" x="2" y="9"></rect>
+              <circle cx="4" cy="4" r="2"></circle>
+            </svg>
+          </a>
+
+          <a href="mailto:twoj_email@domena.pl" class="social-link" title="E-mail" aria-label="Napisz e-mail">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+              <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+            </svg>
+          </a>
+        </div>
+      </div>
     </section>
 
-    <section id="projects">
-        <h1>Projects</h1>
-        <ul>
-            <li>
-                <h2>Website of local restaurant (HTML/CSS/JS)</h2>
-                <p>tresc</p>
-            </li>
-            <li>
-                <h2>Rubik's Cube Timer in Terminal (C#/.NET)</h2>
-                <p>A simple command-line application for timing Rubik's Cube solves, implemented in C# with the .NET framework.</p>
-            </li>
-            <li>
-                <h2>MathQuiz application (C#/WPF)</h2>
-                <p>A simple desktop application for practicing math with sending report to teacher email.</p>
-            </li>
-        </ul>
-    </section>
-
-    <section id="contact">
-        <h1>Contact</h1>
-        <p>If you'd like to get in touch, feel free to reach out via: 
-            <ul>
-                <li><p>Email: <a href="mailto:mrg.mrowicki@gmail.com">mrg.mrowicki@gmail.com</a></p></li>
+    <!-- Sekcja 2: O mnie & Edukacja -->
+    <section id="about" class="section">
+      <div class="container">
+        <h2 class="section-title">O mnie & Edukacja</h2>
+        <div class="about-grid">
+          
+          <div class="glass-card">
+            <div class="card-icon"><i data-lucide="graduation-cap"></i></div>
+            <h3>Edukacja</h3>
+            <ul class="timeline-list">
+              <li>
+                <strong>Politechnika Gdańska (WETI)</strong>
+                <span class="text-muted">Informatyka (Studia Inżynierskie)</span>
+                <p>Jestem studentem 7 semestru studiów inżynierkisch na kierunku Informatyka ne wydziale Elektroniki i Telekomunikacji na Politechnice Gdańskiej.</p>
+              </li>
+              <li>
+                <strong>XIX Liceum Ogólnokształcące w Gdańsku</strong>
+                <span class="text-muted">Profil matematyczno-geograficzny</span>
+              </li>
             </ul>
+          </div>
+
+          <div class="glass-card">
+            <div class="card-icon"><i data-lucide="sparkles"></i></div>
+            <h3>Zainteresowania</h3>
+            <p>
+              Poza nauką na uczelni rozwijam swoje hobby:
+            </p>
+            <div class="interests-grid">
+              <div class="interest-item">
+                <i data-lucide="box"></i>
+                <div>
+                  <strong>Speedcubing</strong>
+                  <span class="text-muted">Układanie kostki Rubika na czas oraz tworzenie powiązanych projektów</span>
+                </div>
+              </div>
+              <div class="interest-item">
+                <i data-lucide="music"></i>
+                <div>
+                  <strong>Gitara</strong>
+                  <span class="text-muted">Gra na gitarze (percusive fingerstyle)</span>
+                </div>
+              </div>
+              <div class="interest-item">
+                <i data-lucide="book-open"></i>
+                <div>
+                  <strong>Korepetycje</strong>
+                  <span class="text-muted">Pomoc uczniom w zrozumieniu matematyki i logicznego myślenia</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
     </section>
 
-    <footer>
-        <p>&copy; 2024 Michał Mrowicki. All rights reserved.</p>
-    </footer>
+    <!-- Sekcja 3: Technologie -->
+    <section id="stack" class="section">
+      <div class="container">
+        <h2 class="section-title">Technologie, z którymi miałem styczność</h2>
+        <p class="section-subtitle">
+          Zestawienie języków i narzędzi, z którymi pracowałem na uczelni lub przy projektach (skala 1-5).
+        </p>
+        
+        <!-- Ładowane z assets/technologies.json -->
+        <div id="tech-container" class="tech-grid">
+          <p class="text-muted">Ładowanie technologii...</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sekcja 4: Doświadczenie & Projekty -->
+    <section id="projects" class="section">
+      <div class="container">
+        <h2 class="section-title">Doświadczenie & Projekty</h2>
+        
+        <div class="projects-grid">
+          
+          <article class="glass-card project-card featured">
+            <div class="card-badge">Projekt komercyjny</div>
+            <div class="project-header">
+              <i data-lucide="globe" class="project-icon"></i>
+              <h3>Strona dla lokalu "Pan od Pinsy"</h3>
+            </div>
+            <p>
+              Strona internetowa dla restauracji. Przygotowanie responsywnego widoku, prezentacja menu, prosta nawigacja oraz podstawowa optymalizacja SEO.
+            </p>
+            <div class="tags">
+              <span>HTML5</span>
+              <span>CSS3</span>
+              <span>JavaScript</span>
+            </div>
+          </article>
+
+          <article class="glass-card project-card">
+            <div class="card-badge">Praktyki</div>
+            <div class="project-header">
+              <i data-lucide="briefcase" class="project-icon"></i>
+              <h3>Praktyki w Edutailor</h3>
+            </div>
+            <p>
+              Manualne testowanie oprogramowania edukacyjnego, weryfikacja scenariuszy użytkownika, wyłapywanie błędów w interfejsie oraz zgłaszanie poprawek zespołowi developerskiemu.
+            </p>
+            <div class="tags">
+              <span>Testowanie oprogramowania</span>
+              <span>QA/Zgłaszanie błędów</span>
+              <span>Jira</span>
+              <span>Confluence</span>
+            </div>
+          </article>
+
+          <article class="glass-card project-card">
+            <div class="card-badge">Projekt uczelniany</div>
+            <div class="project-header">
+              <i data-lucide="network" class="project-icon"></i>
+              <h3>Projekt badawczy NGCF w PyTorch</h3>
+            </div>
+            <p>
+                Implementacja modelu rekomendacyjnego NGCF (Neural Graph Collaborative Filtering) ze strategią Hard Negative Sampling w PyTorch, eksperymenty z hiperparametrami na zbiorach danych i analiza wyników.
+            </p>
+            <div class="tags">
+              <span>Python</span>
+              <span>PyTorch</span>
+              <span>Machine Learning</span>
+              <span>Systemy rekomendacji</span>
+            </div>
+          </article>
+
+          <article class="glass-card project-card">
+            <div class="card-badge">Hobby</div>
+            <div class="project-header">
+              <i data-lucide="layers" class="project-icon"></i>
+              <h3>Projekty speedcubingowe (CubeArt / SolvEra)</h3>
+            </div>
+            <p>
+              Narzędzia wspomagające tworzenie mozaik ze speedcube'ów oraz pomysły na aplikacje dla pasjonatów układania kostek.
+            </p>
+            <div class="tags">
+              <span>C#</span>
+            </div>
+          </article>
+
+          <article class="glass-card project-card">
+            <div class="card-badge">Uczelnia & Nauka</div>
+            <div class="project-header">
+              <i data-lucide="cpu" class="project-icon"></i>
+              <h3>Aplikacje WPF & Wizualizatory struktur</h3>
+            </div>
+            <p>
+              Projekty wspomagające naukę: wizualizator struktur powiązanych w Angularze oraz proste aplikacje quizowe w C# .NET WPF.
+            </p>
+            <div class="tags">
+              <span>C# WPF</span>
+              <span>Angular</span>
+              <span>TypeScript</span>
+            </div>
+          </article>
+
+          <article class="glass-card project-card">
+            <div class="card-badge">Dydaktyka</div>
+            <div class="project-header">
+              <i data-lucide="user-check" class="project-icon"></i>
+              <h3>Korepetycje z matematyki</h3>
+            </div>
+            <p>
+              Prowadzenie indywidualnych zajęć dla uczniów, tłumaczenie zagadnień szkolnych i przygotowanie do sprawdzianów oraz egzaminów.
+            </p>
+            <div class="tags">
+              <span>Matematyka</span>
+              <span>Nauczanie</span>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Sekcja 5: Kontakt (Na samym dole strony) -->
+    <section id="contact" class="section">
+      <div class="container">
+        <h2 class="section-title">Kontakt</h2>
+        <p class="section-subtitle">Chcesz o coś zapytać lub nawiązać kontakt? Napisz śmiało przez formularz.</p>
+        
+        <div class="contact-wrapper">
+          <div class="glass-card contact-info">
+            <h3>Dane kontaktowe</h3>
+            <p class="text-muted">Chętnie odpowiem na pytania dotyczące projektów czy praktyk.</p>
+            
+            <div class="contact-items">
+              <div class="contact-entry">
+                <i data-lucide="map-pin"></i>
+                <span>Gdańsk, Polska</span>
+              </div>
+              <div class="contact-entry">
+                <i data-lucide="mail"></i>
+                <a href="mailto:mrg.mrowicki@gmail.com">mrg.mrowicki@gmail.com</a>
+              </div>
+              <div class="contact-entry">
+                <!-- SVG dla GitHuba -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0;">
+                  <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path>
+                  <path d="M9 18c-4.51 2-5-2-7-2"></path>
+                </svg>
+                <a href="https://github.com/michmro04" target="_blank" rel="noopener noreferrer">github.com/michmro04</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Formularz AJAX: podmień 'twoj_email@domena.pl' na swój prawdziwy email -->
+          <form class="glass-card contact-form" id="contact-form" data-email="mrg.mrowicki@gmail.com">
+            <div class="form-group">
+              <label for="name">Imię i nazwisko</label>
+              <input type="text" id="name" name="name" required placeholder="Jan Kowalski">
+            </div>
+            
+            <div class="form-group">
+              <label for="email">Adres e-mail</label>
+              <input type="email" id="email" name="email" required placeholder="jan@example.com">
+            </div>
+            
+            <div class="form-group">
+              <label for="message">Wiadomość</label>
+              <textarea id="message" name="message" rows="5" required placeholder="Cześć Michał, piszę w sprawie..."></textarea>
+            </div>
+            
+            <button type="submit" class="btn btn-primary btn-block" id="submit-btn">
+              <i data-lucide="send"></i> Wyślij wiadomość
+            </button>
+            <div id="form-status" class="form-status"></div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Stopka -->
+  <footer class="footer">
+    <div class="container footer-content">
+      <p>&copy; <span id="current-year"></span> Michał Mrowicki. Wszystkie prawa zastrzeżone.</p>
+      <div class="footer-links">
+        <a href="#hero">Do góry</a>
+        <a href="https://github.com/michmro04" target="_blank" rel="noopener noreferrer">GitHub</a>
+      </div>
+    </div>
+  </footer>
+
+  
+  
+  <!-- Przycisk powrotu na górę strony -->
+  <button id="scroll-to-top" class="scroll-to-top" aria-label="Przewiń do góry" title="Do góry">
+    <i data-lucide="chevron-up"></i>
+  </button>
+  <!-- Ścieżka do skryptu: assets/scripts/script.js -->
+  <script src="assets/scripts/script.js"></script>
+
 </body>
 </html>

@@ -1,0 +1,68 @@
+[
+  {
+    "name": "C++",
+    "category": "Języki programowania",
+    "level": 4,
+    "description": "Podstawy programowania obiektowego, struktury danych i projekty na studiach."
+  },
+  {
+    "name": "Python",
+    "category": "Data / AI / Skrypty",
+    "level": 3,
+    "description": "Skrypty, podstawy PyTorch przy projektach uczelnianych, przetwarzanie danych."
+  },
+  {
+    "name": "C# (.NET / WPF)",
+    "category": "Aplikacje Desktopowe",
+    "level": 4,
+    "description": "Tworzenie prostych aplikacji okienkowych z interfejsem w XAML."
+  },
+  {
+    "name": "HTML5 / CSS3 / JS",
+    "category": "Web Development",
+    "level": 3,
+    "description": "Budowanie responsywnych stron wizytówkowych i edycja szablonów."
+  },
+  {
+    "name": "Git & GitHub",
+    "category": "Narzędzia",
+    "level": 3,
+    "description": "Podstawowa kontrola wersji, praca z branchami i GitHub Pages."
+  },
+  {
+    "name": "Java",
+    "category": "Programowanie Obiektowe",
+    "level": 3,
+    "description": "Akademickie projekty uczelniane, poznane podstawy języka i OOP."
+  },
+  {
+    "name": "Angular / TypeScript",
+    "category": "Frontend",
+    "level": 3,
+    "description": "Podstawowa znajomość komponentów, praca nad prostymi wizualizatorami."
+  },
+  {
+    "name": "SQL / T-SQL",
+    "category": "Bazy Danych",
+    "level": 2,
+    "description": "Podstawowe zapytania SELECT, łączenie tabel i pojęcia relacyjnych baz."
+  },
+  {
+    "name": "x86 Assembly",
+    "category": "Niski Poziom",
+    "level": 4,
+    "description": "Zajęcia z architektury komputerów, rejestry, 16-bitowe środowisko DOSBox."
+  },
+  {
+    "name": "Jira / Confluence",
+    "category": "Narzędzia",
+    "level": 4,
+    "description": "Zarządzanie projektami, zgłaszanie błędów, dokumentacja i współpraca w zespole."
+  },
+  {
+    "name": "Język angielski",
+    "category": "Języki obce",
+    "level": 4,
+    "description": "B2/C1"
+  }
+]
