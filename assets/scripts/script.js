@@ -62,7 +62,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const card = document.createElement('div');
         card.className = 'tech-card';
 
-        // Generowanie 5 gwiazdek
         let starsHtml = '';
         const maxStars = 5;
         const currentLevel = Math.min(Math.max(item.level, 0), maxStars);
@@ -110,7 +109,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const targetEmail = contactForm.getAttribute('data-email');
     if (!targetEmail || targetEmail.includes('twoj_email')) {
       formStatus.className = 'form-status error';
-      formStatus.textContent = 'Uwaga: Uzupełnij właściwy adres e-mail w pliku index.html (atrybut data-email).';
+      formStatus.textContent = 'Uwaga: Uzupełnij właściwy adres e-mail w pliku index.html.';
       return;
     }
 
@@ -148,15 +147,11 @@ document.addEventListener('DOMContentLoaded', () => {
       if (window.lucide) window.lucide.createIcons();
     }
   });
-});
 
-// ==========================================
-  // OBSŁUGA PRZYCISKU SCROLL TO TOP
-  // ==========================================
+  // 7. Obsługa przycisku Scroll To Top
   const scrollToTopBtn = document.getElementById('scroll-to-top');
 
   window.addEventListener('scroll', () => {
-    // Przycisk pojawia się po przewinięciu o 300px w dół
     if (window.scrollY > 300) {
       scrollToTopBtn?.classList.add('visible');
     } else {
@@ -171,4 +166,127 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  
+  // 8. Obsługa 3D Karuzeli projektów
+  const cards = Array.from(document.querySelectorAll('.carousel-card'));
+  const prevBtn = document.getElementById('carousel-prev');
+  const nextBtn = document.getElementById('carousel-next');
+  const dotsContainer = document.getElementById('carousel-dots');
+  const stage = document.getElementById('carousel-stage');
+
+  if (cards.length > 0) {
+    let currentIndex = 0;
+    const totalCards = cards.length;
+
+    // Generowanie kropek
+    if (dotsContainer) {
+      dotsContainer.innerHTML = '';
+      cards.forEach((_, idx) => {
+        const dot = document.createElement('span');
+        dot.className = `dot ${idx === 0 ? 'active' : ''}`;
+        dot.addEventListener('click', () => updateCarousel(idx));
+        dotsContainer.appendChild(dot);
+      });
+    }
+
+    const dots = dotsContainer ? dotsContainer.querySelectorAll('.dot') : [];
+
+    // Aktualizacja pozycji kart 3D
+    function updateCarousel(newIndex) {
+      currentIndex = (newIndex + totalCards) % totalCards;
+
+      cards.forEach((card, index) => {
+        let diff = index - currentIndex;
+        
+        if (diff > totalCards / 2) diff -= totalCards;
+        if (diff < -totalCards / 2) diff += totalCards;
+
+        // Reset klas bazowych z zachowaniem wyróżnienia featured
+        const isFeatured = card.classList.contains('featured');
+        card.className = `glass-card project-card carousel-card ${isFeatured ? 'featured' : ''}`;
+
+        if (diff === 0) {
+          card.classList.add('active');
+        } else if (diff === 1) {
+          card.classList.add('next');
+        } else if (diff === -1) {
+          card.classList.add('prev');
+        } else if (diff > 1) {
+          card.classList.add('hidden-right');
+        } else {
+          card.classList.add('hidden-left');
+        }
+      });
+
+      // Aktualizacja kropek
+      dots.forEach((dot, idx) => {
+        dot.classList.toggle('active', idx === currentIndex);
+      });
+    }
+
+    // Kliknięcie w boczny kafelek (lub dowolny element bocznego kafelka)
+    cards.forEach((card, index) => {
+      card.addEventListener('click', (e) => {
+        // Jeśli kliknięto w aktywny kafelek i cel to link -> pozwól otworzyć link
+        if (index === currentIndex) {
+          return;
+        }
+
+        // Jeśli kliknięto w boczny kafelek -> przełącz widok na niego
+        e.preventDefault();
+        e.stopPropagation();
+        updateCarousel(index);
+      });
+    });
+
+    // Przyciski strzałek
+    prevBtn?.addEventListener('click', (e) => {
+      e.stopPropagation();
+      updateCarousel(currentIndex - 1);
+    });
+
+    nextBtn?.addEventListener('click', (e) => {
+      e.stopPropagation();
+      updateCarousel(currentIndex + 1);
+    });
+
+    // Obsługa strzałek na klawiaturze (Lewo / Prawo)
+    window.addEventListener('keydown', (e) => {
+      const activeTag = document.activeElement?.tagName;
+      if (activeTag === 'INPUT' || activeTag === 'TEXTAREA') return;
+
+      if (e.key === 'ArrowLeft') {
+        updateCarousel(currentIndex - 1);
+      } else if (e.key === 'ArrowRight') {
+        updateCarousel(currentIndex + 1);
+      }
+    });
+
+    // Przesuwanie gestem na telefonie
+    let touchStartX = 0;
+    let isSwiping = false;
+
+    stage?.addEventListener('touchstart', (e) => {
+      touchStartX = e.touches[0].clientX;
+      isSwiping = false;
+    }, { passive: true });
+
+    stage?.addEventListener('touchmove', () => {
+      isSwiping = true;
+    }, { passive: true });
+
+    stage?.addEventListener('touchend', (e) => {
+      if (!isSwiping) return;
+      const touchEndX = e.changedTouches[0].clientX;
+      const diffX = touchEndX - touchStartX;
+
+      if (diffX > 40) {
+        updateCarousel(currentIndex - 1);
+      } else if (diffX < -40) {
+        updateCarousel(currentIndex + 1);
+      }
+    }, { passive: true });
+
+    // Start od 1. kafelka
+    updateCarousel(0);
+  }
+});
