@@ -1,5 +1,11 @@
 [
   {
+    "name": "C# (.NET / WPF)",
+    "category": "Aplikacje Desktopowe",
+    "level": 4,
+    "description": "Tworzenie prostych aplikacji okienkowych z interfejsem w XAML."
+  },
+  {
     "name": "C++",
     "category": "Języki programowania",
     "level": 4,
@@ -12,13 +18,7 @@
     "description": "Skrypty, podstawy PyTorch przy projektach uczelnianych, przetwarzanie danych."
   },
   {
-    "name": "C# (.NET / WPF)",
-    "category": "Aplikacje Desktopowe",
-    "level": 4,
-    "description": "Tworzenie prostych aplikacji okienkowych z interfejsem w XAML."
-  },
-  {
-    "name": "HTML5 / CSS3 / JS",
+    "name": "HTML / CSS / JS",
     "category": "Web Development",
     "level": 3,
     "description": "Budowanie responsywnych stron wizytówkowych i edycja szablonów."
